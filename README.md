@@ -46,6 +46,23 @@ from customer_orders
 GROUP BY Customer_id
 ORDER BY Customer_id;
 
+100	2022-01-01
+200	2022-01-01
+300	2022-01-01
+400	2022-01-02
+500	2022-01-02
+600	2022-01-03
+
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/8b5835e2d2cb14b8c28c11cf1dd53ac8f9a5969b/first_visit_date.png)
+
+-- 3️⃣ Customers With More Than 3 Orders
+SELECT customer_id, 
+       COUNT(*) AS orders
+FROM customer_orders
+GROUP BY customer_id
+HAVING COUNT(*) > 3;
+
+
+
 
 
