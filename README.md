@@ -53,7 +53,7 @@ SELECT * FROM customer_orders;
 
 ---
 
-## Find out new and repeated customers:
+##  Find out new and repeated customers:
 
 -- For new customers: First_time: co.Order_date= MIN(order_date)
 -- For repeated customers : co.order_date!= Min(order_date) = repeated
@@ -84,7 +84,7 @@ LIMIT 100;
 
 ---
 
-## FIND OUT ORDERS PER CUSTOMERS:
+##  FIND OUT ORDERS PER CUSTOMERS:
 -- Count Orders Per Customer
 -- SOLUTION
 
@@ -107,7 +107,7 @@ ORDER BY customer_Id ASC;
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/09a88529b956b4ba8e681862a4171453a767dc07/customers.png)
 
 ---
-## FIND FIRST ORDER DATE PER CUSTOMER:
+##  FIND FIRST ORDER DATE PER CUSTOMER:
 
 ```sql
 -- first Order Date Per Customer
@@ -131,7 +131,7 @@ OUTPUT:
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/8b5835e2d2cb14b8c28c11cf1dd53ac8f9a5969b/first_visit_date.png)
 
 ---
-## Customers With More Than 3 Orders
+##  Customers With More Than 3 Orders
 
 ```sql
 SELECT customer_id, 
