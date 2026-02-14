@@ -39,6 +39,9 @@ INSERT INTO CUSTOMER_ORDERS VALUES
 -- View table
 SELECT * FROM customer_orders;
 
+```
+--- OUTPUT
+
 | order_id | customer_id | order_date  | order_amount |
 |----------|------------|------------|--------------|
 | 1        | 100        | 2022-01-01 | 2000         |
@@ -56,6 +59,7 @@ SELECT * FROM customer_orders;
 ## 2️⃣ New vs Repeated Customers
 
 ```sql
+---
 WITH First_time AS (
     SELECT customer_id, MIN(order_date) AS First_time_order_dates
     FROM customer_orders
@@ -70,6 +74,7 @@ INNER JOIN First_time fv
 ON co.customer_id = fv.customer_id
 GROUP BY co.order_date
 ORDER BY co.order_date;
+```
 
 | order_date  | new_customer | repeated_customer |
 |------------|--------------|-------------------|
@@ -80,11 +85,12 @@ ORDER BY co.order_date;
 ---
 
 ##  3️⃣ Count Orders Per Customer
+```sql
 SELECT customer_id, COUNT(customer_id) AS num_of_orders
 FROM customer_orders
 GROUP BY customer_id
 ORDER BY customer_id ASC;
-
+```
 -- OUTPUT
 | customer_id | num_of_orders |
 |-------------|--------------|
@@ -95,16 +101,16 @@ ORDER BY customer_id ASC;
 | 500         | 1            |
 | 600         | 1            |
 
-
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/09a88529b956b4ba8e681862a4171453a767dc07/customers.png)
 
 ---
-4️⃣ First Order Date Per Customer
+## 4️⃣ First Order Date Per Customer
+```sql
 SELECT customer_id, MIN(order_date) AS First_order_date
 FROM customer_orders
 GROUP BY customer_id
 ORDER BY customer_id;
-
+```
 OUTPUT:
 
 | customer_id | First_order_date |
@@ -128,6 +134,7 @@ SELECT customer_id,
 FROM customer_orders
 GROUP BY customer_id
 HAVING COUNT(*) > 3;
+```
 
 OUTPUT:
 | customer_id | orders |
