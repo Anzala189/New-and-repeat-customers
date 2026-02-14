@@ -1,21 +1,43 @@
 # New-and-repeat-customers
-# SQL-PRACTICE-QUESTIONS
 
--- Script 3 :
--- New and repeated customers
+# SQL Portfolio – Customer Orders Analysis
 
+This repository contains SQL tasks for analyzing customer orders:
+- Find **new vs repeated customers**
+- Count **orders per customer**
+- Find **first order date per customer**
+- Identify **customers with more than 3 orders**
+
+---
+
+## 1️⃣ Database & Table Setup
+
+```sql
+-- Create database and table
 CREATE DATABASE new_repeated_customers;
 USE new_repeated_customers;
+
 CREATE TABLE CUSTOMER_ORDERS (
-ORDER_ID INTEGER,
-CUSTOMER_ID INTEGER,
-ORDER_DATE DATE,
-ORDER_AMOUNT INTEGER
+    ORDER_ID INTEGER, 
+    CUSTOMER_ID INTEGER, 
+    ORDER_DATE DATE, 
+    ORDER_AMOUNT INTEGER
 );
-INSERT INTO CUSTOMER_ORDERS VALUES(1,100,CAST('2022-01-01' AS DATE),2000),(2,200,CAST('2022-01-01' AS DATE),2500),(3,300,CAST('2022-01-01' AS DATE),2100)
-,(4,100,CAST('2022-01-02' AS DATE),2000),(5,400,CAST('2022-01-02' AS DATE),2200),(6,500,CAST('2022-01-02' AS DATE),2700)
-,(7,100,CAST('2022-01-03' AS DATE),3000),(8,400,CAST('2022-01-03' AS DATE),1000),(9,600,CAST('2022-01-03' AS DATE),3000);
-SELECT*FROM customer_orders;
+
+-- Insert sample data
+INSERT INTO CUSTOMER_ORDERS VALUES
+(1,100,'2022-01-01',2000),
+(2,200,'2022-01-01',2500),
+(3,300,'2022-01-01',2100),
+(4,100,'2022-01-02',2000),
+(5,400,'2022-01-02',2200),
+(6,500,'2022-01-02',2700),
+(7,100,'2022-01-03',3000),
+(8,400,'2022-01-03',1000),
+(9,600,'2022-01-03',3000);
+
+-- View table
+SELECT * FROM customer_orders;
 
 | order_id | customer_id | order_date  | order_amount |
 |----------|------------|------------|--------------|
