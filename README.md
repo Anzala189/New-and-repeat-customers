@@ -10,7 +10,7 @@ This repository contains SQL tasks for analyzing customer orders:
 
 ---
 
-## 1️⃣ Database & Table Setup
+##  Database & Table Setup
 
 ```sql
 -- Create database and table
@@ -56,7 +56,7 @@ SELECT * FROM customer_orders;
 
 -- SOLUTION:
 
--- Q) Find out new and repeated customers:
+## Find out new and repeated customers:
 
 WITH First_time AS(
 SELECT customer_id, MIN(order_date) AS First_time_order_dates
@@ -80,7 +80,7 @@ LIMIT 100;
 | 2022-01-03 | 1            | 2                 |
 
 
--- FIND OUT ORDERS PER CUSTOMERS:
+## FIND OUT ORDERS PER CUSTOMERS:
 -- Count Orders Per Customer
 -- SOLUTION
 
@@ -100,7 +100,7 @@ ORDER BY customer_Id ASC;
 
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/09a88529b956b4ba8e681862a4171453a767dc07/customers.png)
 
-QUESTION: FIND FIRST ORDER DATE PER CUSTOMER:
+## FIND FIRST ORDER DATE PER CUSTOMER:
 
 -- first Order Date Per Customer
 SELECT customer_id, MIN(order_date) AS First_order_date
@@ -121,7 +121,7 @@ ORDER BY Customer_id;
 
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/8b5835e2d2cb14b8c28c11cf1dd53ac8f9a5969b/first_visit_date.png)
 
--- 3️⃣ Customers With More Than 3 Orders
+## Customers With More Than 3 Orders
 SELECT customer_id, 
        COUNT(*) AS orders
 FROM customer_orders
