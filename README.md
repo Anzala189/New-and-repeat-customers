@@ -143,12 +143,4 @@ OUTPUT:
 
 ---
 
-## 5️⃣ Customers With More Than 3 Orders
-```sql
-SELECT customer_id, COUNT(*) AS orders
-FROM customer_orders
-GROUP BY customer_id
-HAVING COUNT(*) > 3;
-```
-
 
