@@ -6,11 +6,35 @@
 
 CREATE DATABASE new_repeated_customers;
 USE new_repeated_customers;
+CREATE TABLE CUSTOMER_ORDERS (
+ORDER_ID INTEGER,
+CUSTOMER_ID INTEGER,
+ORDER_DATE DATE,
+ORDER_AMOUNT INTEGER
+);
+INSERT INTO CUSTOMER_ORDERS VALUES(1,100,CAST('2022-01-01' AS DATE),2000),(2,200,CAST('2022-01-01' AS DATE),2500),(3,300,CAST('2022-01-01' AS DATE),2100)
+,(4,100,CAST('2022-01-02' AS DATE),2000),(5,400,CAST('2022-01-02' AS DATE),2200),(6,500,CAST('2022-01-02' AS DATE),2700)
+,(7,100,CAST('2022-01-03' AS DATE),3000),(8,400,CAST('2022-01-03' AS DATE),1000),(9,600,CAST('2022-01-03' AS DATE),3000);
 SELECT*FROM customer_orders;
+
+| order_id | customer_id | order_date  | order_amount |
+|----------|------------|------------|--------------|
+| 1        | 100        | 2022-01-01 | 2000         |
+| 2        | 200        | 2022-01-01 | 2500         |
+| 3        | 300        | 2022-01-01 | 2100         |
+| 4        | 100        | 2022-01-02 | 2000         |
+| 5        | 400        | 2022-01-02 | 2200         |
+| 6        | 500        | 2022-01-02 | 2700         |
+| 7        | 100        | 2022-01-03 | 3000         |
+| 8        | 400        | 2022-01-03 | 1000         |
+| 9        | 600        | 2022-01-03 | 3000         |
+
 -- For new customers: First_time: co.Order_date= MIN(order_date)
 -- For repeated customers : co.order_date!= Min(order_date) = repeated
 
-SOLUTION:
+-- SOLUTION:
+
+-- Q) Find out new and repeated customers:
 
 WITH First_time AS(
 SELECT customer_id, MIN(order_date) AS First_time_order_dates
@@ -27,14 +51,30 @@ GROUP BY co.order_date
 order by co.order_date
 LIMIT 100;
 
-FIND OUT ORDERS PER CUSTOMERS:
+| order_date  | new_customer | repeated_customer |
+|------------|--------------|-------------------|
+| 2022-01-01 | 3            | 0                 |
+| 2022-01-02 | 2            | 1                 |
+| 2022-01-03 | 1            | 2                 |
 
+
+-- FIND OUT ORDERS PER CUSTOMERS:
 -- Count Orders Per Customer
+-- SOLUTION
 
-SOLUTION
 SELECT customer_id,COUNT(customer_Id) AS num_of_orders FROM customer_orders
 GROUP BY customer_id
 ORDER BY customer_Id ASC;
+
+| customer_id | num_of_orders |
+|-------------|--------------|
+| 100         | 3            |
+| 200         | 1            |
+| 300         | 1            |
+| 400         | 2            |
+| 500         | 1            |
+| 600         | 1            |
+
 
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/09a88529b956b4ba8e681862a4171453a767dc07/customers.png)
 
@@ -65,6 +105,11 @@ SELECT customer_id,
 FROM customer_orders
 GROUP BY customer_id
 HAVING COUNT(*) > 3;
+
+| customer_id | orders |
+|-------------|--------|
+| NULL        | NULL   |
+
 
 
 
