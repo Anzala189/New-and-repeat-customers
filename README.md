@@ -126,7 +126,7 @@ OUTPUT:
 ![image](https://github.com/Anzala189/SQL-PRACTICE-QUESTIONS/blob/8b5835e2d2cb14b8c28c11cf1dd53ac8f9a5969b/first_visit_date.png)
 
 ---
-##  Customers With More Than 3 Orders
+##  5) Customers With More Than 3 Orders
 
 ```sql
 SELECT customer_id, 
@@ -142,5 +142,58 @@ OUTPUT:
 | NULL        | NULL   |
 
 ---
+
+##  6) Number each order per customer
+
+```sql
+SELECT *,ROW_NUMBER() OVER (
+PARTITION BY customer_id
+ORDER BY order_date) AS Orders_per_customer
+FROM customer_orders;
+```
+
+--- OUTPUT:
+----
+### 🔹 Orders With Running Count Per Customer
+
+| order_id | customer_id | order_date  | order_amount | Order_per_cystomer|
+|----------|------------|------------|--------------|--------------------|
+| 1        | 100        | 2022-01-01 | 2000         | 1                  |
+| 4        | 100        | 2022-01-02 | 2000         | 2                  |
+| 7        | 100        | 2022-01-03 | 3000         | 3                  |
+| 2        | 200        | 2022-01-01 | 2500         | 1                  |
+| 3        | 300        | 2022-01-01 | 2100         | 1                  |
+| 5        | 400        | 2022-01-02 | 2200         | 1                  |
+| 8        | 400        | 2022-01-03 | 1000         | 2                  |
+| 6        | 500        | 2022-01-02 | 2700         | 1                  |
+| 9        | 600        | 2022-01-03 | 3000         | 1                  |
+
+
+## 7) Total amount each customer spent
+
+```sql
+SELECT*, SUM(order_amount) OVER (PARTITION BY customer_id) AS total_amount
+FROM customer_orders;
+```
+---OUTPUT:
+
+### 🔹 Orders With Total Per Customer
+
+| order_id | customer_id | order_date  | order_amount | total_amount_per_customer |
+|----------|------------|------------|--------------|---------------------------|
+| 1        | 100        | 2022-01-01 | 2000         | 7000                      |
+| 4        | 100        | 2022-01-02 | 2000         | 7000                      |
+| 7        | 100        | 2022-01-03 | 3000         | 7000                      |
+| 2        | 200        | 2022-01-01 | 2500         | 2500                      |
+| 3        | 300        | 2022-01-01 | 2100         | 2100                      |
+| 5        | 400        | 2022-01-02 | 2200         | 3200                      |
+| 8        | 400        | 2022-01-03 | 1000         | 3200                      |
+| 6        | 500        | 2022-01-02 | 2700         | 2700                      |
+| 9        | 600        | 2022-01-03 | 3000         | 3000                      |
+
+---
+
+
+
 
 
